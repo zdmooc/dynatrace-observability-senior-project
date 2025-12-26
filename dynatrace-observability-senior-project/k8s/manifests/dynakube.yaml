@@ -1,0 +1,25 @@
+# Exemple DynaKube (à adapter selon votre Dynatrace env et mode)
+apiVersion: dynatrace.com/v1beta3
+kind: DynaKube
+metadata:
+  name: dynakube
+  namespace: dynatrace
+spec:
+  # URL de votre environnement Dynatrace (Managed/SaaS)
+  apiUrl: https://<YOUR_ENVIRONMENT_URL>/api
+  # Référence au secret API token
+  tokens: dynatrace-api-token
+
+  # Mode recommandé : platform monitoring + app observability
+  # Les champs exacts peuvent varier selon versions Operator; privilégier le dynakube.yaml généré par Dynatrace.
+  kubernetesMonitoring:
+    enabled: true
+
+  oneAgent:
+    cloudNativeFullStack:
+      enabled: true
+
+  # Exemple de configuration proxy (si nécessaire)
+  # proxy:
+  #   value: http://proxy.corp:8080
+  #   noProxy: ".cluster.local,10.0.0.0/8,127.0.0.1,localhost"
