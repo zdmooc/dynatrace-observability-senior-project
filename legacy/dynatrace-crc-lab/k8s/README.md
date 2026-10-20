@@ -1,0 +1,1 @@
+Manifests Dynatrace + apps demo.
