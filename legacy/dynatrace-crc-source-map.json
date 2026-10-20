@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "audited_on": "2026-10-20",
   "owner_repository": "zdmooc/dynatrace-observability-senior-project",
-  "decision": "PARTIAL_CONTENT_MIGRATION_SOURCE_DELETE_BLOCKED",
+  "decision": "ALL_PATHS_PRESENT_39_EXACT_4_RECONSTRUCTED_NO_FULL_SOURCE_BLOB_PRESERVATION",
   "source_repo": "zdmooc/dynatrace-crc-lab",
   "source_tree_sha": "3f08a2956e9767912e59407e836fe79234e02397",
   "original_files": 27,
@@ -14,7 +14,8 @@
       "sha": "56a57d99ac6d4091816891b1222f07f30a403297",
       "size": 41,
       "destination": "legacy/dynatrace-crc-lab/.gitignore",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "COMMAND_LOG.md",
@@ -22,7 +23,8 @@
       "sha": "568d3e48fa6ca6dcfe55231741c83d711641de2d",
       "size": 42,
       "destination": "legacy/dynatrace-crc-lab/COMMAND_LOG.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "README.md",
@@ -30,7 +32,8 @@
       "sha": "4288e687330c83f80f0ebefffd093f6b5e3ddab2",
       "size": 369,
       "destination": "legacy/dynatrace-crc-lab/README.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "docs/00-prerequis.md",
@@ -38,7 +41,8 @@
       "sha": "9fa11a17824186ef50a867fd31010d2478a96316",
       "size": 130,
       "destination": "legacy/dynatrace-crc-lab/docs/00-prerequis.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "docs/10-runbook-replay-from-scratch.md",
@@ -46,7 +50,10 @@
       "sha": "64dbda86ef02238f690615b9af92adda32ab75d9",
       "size": 349,
       "destination": "legacy/dynatrace-crc-lab/docs/10-runbook-replay-from-scratch.md",
-      "preserved": false
+      "preserved": false,
+      "reconstructed_sha": "92e765a257acd1e8adf27a918528427b83ce4664",
+      "reconstruction": "INDEPENDENT_REFERENCE_2026-10-20",
+      "original_blob_preserved": false
     },
     {
       "path": "docs/20-install-dynatrace-operator.md",
@@ -54,7 +61,8 @@
       "sha": "487a16c363b3b5368ce499a78e41b309120bada4",
       "size": 224,
       "destination": "legacy/dynatrace-crc-lab/docs/20-install-dynatrace-operator.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "docs/30-deploy-dynakube.md",
@@ -62,7 +70,8 @@
       "sha": "fe482cd21a26531fbb8e6bae893e33cde2511d3c",
       "size": 164,
       "destination": "legacy/dynatrace-crc-lab/docs/30-deploy-dynakube.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "docs/99-matrice-couverture-mission.md",
@@ -70,7 +79,8 @@
       "sha": "9dade8fda438155752272b29266e1e17f389d6e6",
       "size": 422,
       "destination": "legacy/dynatrace-crc-lab/docs/99-matrice-couverture-mission.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step00-oc-baseline.txt",
@@ -78,7 +88,8 @@
       "sha": "7dded75770623166998dadb63b90740ca4d46ac5",
       "size": 39,
       "destination": "legacy/dynatrace-crc-lab/evidence/step00-oc-baseline.txt",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step01-operator-installed.txt",
@@ -86,7 +97,8 @@
       "sha": "bbe74a0c528b41b183e16dcb993834779fc19aca",
       "size": 46,
       "destination": "legacy/dynatrace-crc-lab/evidence/step01-operator-installed.txt",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step02-dynakube-ready.txt",
@@ -94,7 +106,8 @@
       "sha": "7a156de9f7f97429b51f87cbed1647f11267a8da",
       "size": 42,
       "destination": "legacy/dynatrace-crc-lab/evidence/step02-dynakube-ready.txt",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step03-demo-apps.txt",
@@ -102,7 +115,8 @@
       "sha": "b116b281b3fd62f3dda5f676b9d0efe3c1685fa6",
       "size": 37,
       "destination": "legacy/dynatrace-crc-lab/evidence/step03-demo-apps.txt",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step04-dashboards-alerts.md",
@@ -110,7 +124,8 @@
       "sha": "f6c8489750c7d50f0397c2f973e1ff3c655d7d3b",
       "size": 44,
       "destination": "legacy/dynatrace-crc-lab/evidence/step04-dashboards-alerts.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step05-slo-reporting.md",
@@ -118,7 +133,8 @@
       "sha": "37449c93291f9c2fd3b9690fa5840b2c626d8628",
       "size": 40,
       "destination": "legacy/dynatrace-crc-lab/evidence/step05-slo-reporting.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "evidence/step06-incident-rca.md",
@@ -126,7 +142,10 @@
       "sha": "8b071da839191a1b5cca8bcd50fe8bf374b265a0",
       "size": 39,
       "destination": "legacy/dynatrace-crc-lab/evidence/step06-incident-rca.md",
-      "preserved": false
+      "preserved": false,
+      "reconstructed_sha": "17c2980b22dbcce3ca1ec13da66e0080d5364317",
+      "reconstruction": "INDEPENDENT_REFERENCE_2026-10-20",
+      "original_blob_preserved": false
     },
     {
       "path": "k8s/README.md",
@@ -134,7 +153,8 @@
       "sha": "a3a86f8beec3234f329f3709423825a109a57aeb",
       "size": 33,
       "destination": "legacy/dynatrace-crc-lab/k8s/README.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/demo-apps/00-namespace-demo.yaml",
@@ -142,7 +162,8 @@
       "sha": "18434a6121db955878d26be3f7988a5b56867e4c",
       "size": 54,
       "destination": "legacy/dynatrace-crc-lab/k8s/demo-apps/00-namespace-demo.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/demo-apps/10-nginx.yaml",
@@ -150,7 +171,8 @@
       "sha": "f46e5e3b726f7c2b3d0eb39cd21f859146fee5c7",
       "size": 635,
       "destination": "legacy/dynatrace-crc-lab/k8s/demo-apps/10-nginx.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/demo-apps/20-httpbin.yaml",
@@ -158,7 +180,8 @@
       "sha": "932231fcdfb63c147460d4c484b9de1a8d00c456",
       "size": 661,
       "destination": "legacy/dynatrace-crc-lab/k8s/demo-apps/20-httpbin.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/demo-apps/30-postgres.yaml",
@@ -166,7 +189,8 @@
       "sha": "ad16c7f1addce04de238ebf2dc69bb0131840b47",
       "size": 679,
       "destination": "legacy/dynatrace-crc-lab/k8s/demo-apps/30-postgres.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/demo-apps/40-traffic-generator.yaml",
@@ -174,7 +198,8 @@
       "sha": "10f1e7655c6d785fbf9c82e2296e882740a664eb",
       "size": 620,
       "destination": "legacy/dynatrace-crc-lab/k8s/demo-apps/40-traffic-generator.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/dynatrace/00-namespace.yaml",
@@ -182,7 +207,8 @@
       "sha": "c354602d531d06620ca2d9dd8d4988f39d230f3f",
       "size": 59,
       "destination": "legacy/dynatrace-crc-lab/k8s/dynatrace/00-namespace.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "k8s/dynatrace/20-dynakube.yaml",
@@ -190,7 +216,8 @@
       "sha": "2085347b7c43d358143a8354769216a3ee0c3aac",
       "size": 272,
       "destination": "legacy/dynatrace-crc-lab/k8s/dynatrace/20-dynakube.yaml",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "runbooks/01-incident-triage.md",
@@ -198,7 +225,8 @@
       "sha": "99b761909b8d9bb6bf47ef449404c94fbbf9b06d",
       "size": 165,
       "destination": "legacy/dynatrace-crc-lab/runbooks/01-incident-triage.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "runbooks/03-rca-template.md",
@@ -206,7 +234,8 @@
       "sha": "bef9b4264965cdee590af3a2fbc9ece8c4ffcfd5",
       "size": 87,
       "destination": "legacy/dynatrace-crc-lab/runbooks/03-rca-template.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "scripts/10_crc_baseline.sh",
@@ -214,7 +243,8 @@
       "sha": "35f23825dd27f34d1993c95df00669854a133c50",
       "size": 239,
       "destination": "legacy/dynatrace-crc-lab/scripts/10_crc_baseline.sh",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     },
     {
       "path": "templates/monthly-report-template.md",
@@ -222,7 +252,11 @@
       "sha": "c2f61659cfc234adbb54d6c2ed5149abe0ccca54",
       "size": 95,
       "destination": "legacy/dynatrace-crc-lab/templates/monthly-report-template.md",
-      "preserved": true
+      "preserved": true,
+      "original_blob_preserved": true
     }
-  ]
+  ],
+  "original_files_exact": 25,
+  "reconstructed_files": 2,
+  "reconstruction_disclaimer": "Reconstructed files are NOT identical to the source Git blobs. Deleting source repositories permanently loses original content and Git history for those files."
 }
