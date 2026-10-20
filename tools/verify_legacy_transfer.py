@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-"""Verify a legacy GitHub source content migration via exact Git blob SHA-1.
+"""Contrôle de consolidation legacy : copies exactes + reconstitutions identifiées.
 
-Run from any directory:
-    python tools/verify_legacy_transfer.py
-    python tools/verify_legacy_transfer.py --update-manifest
-
-The second form changes the manifest *only when all original files are present
-and exact*. It does not delete or download repositories.
+Ne promet jamais que des fichiers recréés sont des copies de leurs originaux.
+Commande : python tools/verify_legacy_transfer.py
+L'ancienne option --update-manifest reste acceptée sans modifier la provenance.
 """
 from __future__ import annotations
 
@@ -16,68 +13,88 @@ import json
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
-PEGA_MANIFEST = ROOT / "legacy" / "pega-legacy-source-map.json"
-DYNATRACE_MANIFEST = ROOT / "legacy" / "dynatrace-crc-source-map.json"
+MANIFEST_CANDIDATES = [
+    ROOT / "legacy" / "pega-legacy-source-map.json",
+    ROOT / "legacy" / "dynatrace-crc-source-map.json",
+]
 
 
-def git_sha1(blob: bytes) -> str:
-    return hashlib.sha1(b"blob " + str(len(blob)).encode("ascii") + b"\0" + blob).hexdigest()
+def git_blob_sha(content: bytes) -> str:
+    prefix = b"blob " + str(len(content)).encode("ascii") + b"\0"
+    return hashlib.sha1(prefix + content).hexdigest()
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--update-manifest",
-        action="store_true",
-        help="When ALL files match, mark every record preserved=true and update status",
-    )
+    parser.add_argument("--update-manifest", action="store_true",
+                        help="Ancienne option : sans effet, la provenance est figée dans le manifeste")
     args = parser.parse_args()
-    manifests = [x for x in (PEGA_MANIFEST, DYNATRACE_MANIFEST) if x.is_file()]
-    if len(manifests) != 1:
-        print("ERROR: expected exactly one Pega or Dynatrace manifest", file=sys.stderr)
-        return 2
-    manifest_path = manifests[0]
-    data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    sources = data.get("sources")
-    if not sources:
-        sources = [{"repo": data.get("source_repo"), "files": data["files"]}]
 
-    checked = 0
+    found = [p for p in MANIFEST_CANDIDATES if p.is_file()]
+    if len(found) != 1:
+        print("ERROR: exactly one legacy source map expected", file=sys.stderr)
+        return 2
+
+    manifest = json.loads(found[0].read_text(encoding="utf-8"))
+    groups = manifest.get("sources") or [manifest]
+    entries = [entry for group in groups for entry in group["files"]]
     errors = []
-    for source in sources:
-        for entry in source["files"]:
-            rel = entry["destination"]
-            candidate = (ROOT / rel).resolve()
-            if not candidate.is_relative_to(ROOT.resolve()):
-                errors.append(f"INVALID PATH: {rel}")
+    copied = 0
+    reconstructed = 0
+
+    for item in entries:
+        relative = item["destination"]
+        destination = (ROOT / relative).resolve()
+        if not destination.is_relative_to(ROOT.resolve()):
+            errors.append(f"INVALID_PATH: {relative}")
+            continue
+        if not destination.is_file():
+            errors.append(f"MISSING: {relative}")
+            continue
+
+        original = item["sha"]
+        replacement = item.get("reconstructed_sha")
+        if replacement is not None:
+            if item.get("preserved") is not False or not item.get("reconstruction"):
+                errors.append(f"INVALID_RECONSTRUCTION_METADATA: {relative}")
                 continue
-            if not candidate.is_file():
-                errors.append(f"MISSING: {rel}")
+            expected = replacement
+            category = "reconstructed"
+            if replacement == original:
+                errors.append(f"RECONSTRUCTION_UNEXPECTEDLY_IDENTICAL: {relative}")
                 continue
-            actual = git_sha1(candidate.read_bytes())
-            if actual != entry["sha"]:
-                errors.append(f"SHA MISMATCH: {rel} expected {entry['sha']}, got {actual}")
-            else:
-                checked += 1
-    total = sum(len(source["files"]) for source in sources)
+        else:
+            if item.get("preserved") is not True:
+                errors.append(f"UNCOVERED_ORIGINAL: {relative}")
+                continue
+            expected = original
+            category = "copied"
+
+        actual = git_blob_sha(destination.read_bytes())
+        if actual != expected:
+            errors.append(f"SHA_MISMATCH: {relative}; expected {expected}; actual {actual}")
+        elif category == "copied":
+            copied += 1
+        else:
+            reconstructed += 1
+
     for error in errors:
         print(error)
-    print(f"SHA_MATCH: {checked}/{total}")
+    print(f"EXACT_SOURCE_BLOBS: {copied}")
+    print(f"INDEPENDENT_RECONSTRUCTIONS: {reconstructed}")
+    print(f"CONTENT_VERIFIED: {copied + reconstructed}/{len(entries)}")
+
     if errors:
-        print("SOURCE_DELETE_BLOCKED: retain original repositories")
+        print("LEGACY_CONTENT_CHECK_FAILED: keep original repositories")
         return 1
 
     if args.update_manifest:
-        for source in sources:
-            for entry in source["files"]:
-                entry["preserved"] = True
-        data["decision"] = "SOURCE_CONTENT_COMPLETE_GIT_SHA_VERIFIED"
-        manifest_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        print(f"Manifest updated: {manifest_path.relative_to(ROOT)}")
-    print("LEGACY_CONTENT_VERIFIED: all source files present with exact Git blob SHA")
-    print("NOTE: Git history, issues and repository settings are not preserved by this check")
+        print("INFO: --update-manifest is deprecated; manifest provenance remains unchanged.")
+
+    print("CONTENT_COVERAGE_PASS_WITH_RECONSTRUCTION")
+    print("WARNING: reconstructed files differ from original Git blobs.")
+    print("WARNING: full original Git histories, settings and issues are not preserved.")
     return 0
 
 
