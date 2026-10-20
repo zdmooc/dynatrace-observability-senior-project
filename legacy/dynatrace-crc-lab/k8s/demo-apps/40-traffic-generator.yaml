@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: traffic
+  namespace: demo
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: curl
+        image: curlimages/curl:8.10.1
+        command: ["sh","-lc"]
+        args:
+          - |
+            HOST=$(kubectl get route httpbin -n demo -o jsonpath='{.spec.host}')
+            for i in $(seq 1 300); do
+              curl -s -o /dev/null -w "%{http_code} %{time_total}\n" "http://$HOST/get" || true
+              curl -s -o /dev/null -w "%{http_code} %{time_total}\n" "http://$HOST/status/500" || true
+              sleep 1
+            done

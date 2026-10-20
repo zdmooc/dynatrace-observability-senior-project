@@ -29,3 +29,7 @@ MIT — voir **LICENSE**.
 
 ---
 _Généré le 2025-12-24_
+
+## Consolidation du lab Dynatrace CRC — 20 octobre 2026
+
+Le contenu de l'ancien `dynatrace-crc-lab` est **partiellement** conservé sous [`legacy/dynatrace-crc-lab/`](legacy/dynatrace-crc-lab/), avec [inventaire des fichiers transférés et manquants](legacy/DYNATRACE_CRC_TRANSFER_2026-10-20.md). **25/27 fichiers récupérés octet pour octet** ; deux fichiers ont été bloqués à l'écriture par la connexion et restent dans le dépôt source. **Ne pas supprimer le dépôt source.** Les fichiers `evidence/` peuvent contenir des espaces réservés « À remplir » : ne pas les présenter comme des preuves de déploiement.
