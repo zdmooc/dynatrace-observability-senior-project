@@ -23,8 +23,8 @@ Le guide CRC reconstitué explicite les prérequis, les étapes de test et les p
 - **Vérification de l'arbre `main` GitHub :** 25/25 copies et 2/2 reconstitutions présentes aux SHA annoncés ; aucun chemin manquant.
 - Aucun cluster OpenShift/CRC, agent Dynatrace ou DynaKube n'a été exécuté lors de cette consolidation.
 
-## Suppression du dépôt source
+## Suppression du dépôt source confirmée
 
-Le dépôt source est **candidat à la suppression manuelle par le propriétaire** s'il accepte de perdre les **deux blobs originaux** (recréés différemment), son historique Git, ses éventuels tickets et ses paramètres. Ces éléments ne sont pas transférés dans ce dépôt canonique.
+Le dépôt `dynatrace-crc-lab` a été **supprimé manuellement par son propriétaire le 20/10/2026**. Vérification : GitHub 404 et absence de l'inventaire ; le dépôt canonique est toujours accessible avec les 27 chemins attendus (25 copies exactes et 2 reconstitutions aux SHA vérifiés). Les deux blobs originaux recréés différemment et l'historique Git ancien ne sont pas transférés.
 
-**Aucune suppression GitHub n'a été exécutée par l'assistant.**
+**L'assistant n'a exécuté aucune suppression GitHub.**
